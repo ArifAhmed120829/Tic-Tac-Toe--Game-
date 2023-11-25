@@ -11,10 +11,23 @@ public class TicTacToe {
 		printBoard(board);
 		while(checkIfanyBoardposIsEmpty(board)) {
 			System.out.println("Where would you like to play? ");
-			int userInput = in.nextInt();
+			int userInput = 0;
+			boolean check = true;
+			while(check) {
+				 userInput = in.nextInt();
+				check = checkNotUnique(board,userInput);
+				if(check) System.out.println("This position is occupied...Please select empty slot");
+			}
 			input(board,userInput, 'X');
 			if(thegameisover(board)) break;
-			int comInput = r.nextInt(10)+1;
+			///////
+			
+			int comInput = 0;
+			check = true;
+			while(check) {
+				 comInput = r.nextInt(10)+1;
+				check = checkNotUnique(board,comInput);
+			}
 			System.out.println("Computer plays in "+comInput+" no position");
 			input(board,comInput, 'O');
 			if(thegameisover(board)) break;
@@ -28,6 +41,48 @@ public class TicTacToe {
 		}
 		else System.out.println("The game is tied");
 		
+		
+	}
+
+	private static boolean checkNotUnique(char[][] board, int i) {
+		
+		if(i==1)  {
+			if(board[0][0] == ' ') return false;
+			else return true;
+		}
+		else if(i==2)  {
+			if(board[0][1] == ' ') return false;
+			else return true;
+		}
+		else if(i==3)  {
+			if(board[0][2] == ' ') return false;
+			else return true;
+		}
+		else if(i==4)  {
+			if(board[1][0] == ' ') return false;
+			else return true;
+		}
+		else if(i==5)  {
+			if(board[1][1] == ' ') return false;
+			else return true;
+		}
+		else if(i==6)  {
+			if(board[1][2] == ' ') return false;
+			else return true;
+		}
+		else if(i==7)  {
+			if(board[2][0] == ' ') return false;
+			else return true;
+		}
+		else if(i==8)  {
+			if(board[2][1] == ' ') return false;
+			else return true;
+		}
+		else if(i==9)  {
+			if(board[2][2] == ' ') return false;
+			else return true;
+		}
+		return true;
 		
 	}
 
