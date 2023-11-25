@@ -13,18 +13,63 @@ public class TicTacToe {
 			System.out.println("Where would you like to play? ");
 			int userInput = in.nextInt();
 			input(board,userInput, 'X');
+			if(thegameisover(board)) break;
 			int comInput = r.nextInt(10)+1;
 			System.out.println("Computer plays in "+comInput+" no position");
 			input(board,comInput, 'O');
+			if(thegameisover(board)) break;
 			printBoard(board);
-			if(thegameisover()) break;
+			
 		}
-		if(thegameisover()) System.out.println();
+		if(thegameisover(board) ) {
+			char c = checkThewinner(board);
+			System.out.println(c+" Won the game");
+			
+		}
+		else System.out.println("The game is tied");
+		
 		
 	}
 
-	private static boolean thegameisover() {
+	private static char checkThewinner(char[][] board) {
+		if(board[0][0] == 'X' && board[0][1] == 'X'&&board[0][2] == 'X') return 'X';
+		else if(board[1][0] == 'X' && board[1][1] == 'X'&&board[1][2] == 'X') return 'X';
+		else if(board[2][0] == 'X' && board[2][1] == 'X'&&board[2][2] == 'X') return 'X';
+		else if(board[0][0] == 'X' && board[1][0] == 'X'&&board[2][0] == 'X') return 'X';
+		else if(board[0][1] == 'X' && board[1][1] == 'X'&&board[2][1] == 'X') return 'X';
+		else if(board[0][2] == 'X' && board[1][2] == 'X'&&board[2][2] == 'X') return 'X';
+		else if(board[0][2] == 'X' && board[1][1] == 'X'&&board[2][0] == 'X') return 'X';
+		else if(board[0][0] == 'X' && board[1][1] == 'X'&&board[2][2] == 'X') return 'X';	
+		else if(board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == 'O') return 'O';
+		else if(board[1][0] == 'O' && board[1][1] == 'O'&& board[1][2] == 'O') return 'O';
+		else if(board[2][0] == 'O' && board[2][1] == 'O'&&board[2][2] == 'O') return 'O';
+		else if(board[0][0] == 'O' && board[1][0] == 'O'&&board[2][0] == 'O') return 'O';
+		else if(board[0][1] == 'O' && board[1][1] == 'O'&&board[2][1] == 'O') return 'O';
+		else if(board[0][2] == 'O' && board[1][2] == 'O'&&board[2][2] == 'O') return 'O';
+		else if(board[0][2] == 'O' && board[1][1] == 'O'&&board[2][0] == 'O') return 'O';
+		else if(board[0][0] == 'O' && board[1][1] == 'O'&&board[2][2] == 'O') return 'O';
 		
+		return 'f';
+		
+	}
+
+	private static boolean thegameisover(char[][] board) {
+		if(board[0][0] == 'X' && board[0][1] == 'X'&&board[0][2] == 'X') return true;
+		else if(board[1][0] == 'X' && board[1][1] == 'X'&&board[1][2] == 'X') return true;
+		else if(board[2][0] == 'X' && board[2][1] == 'X'&&board[2][2] == 'X') return true;
+		else if(board[0][0] == 'X' && board[1][0] == 'X'&&board[2][0] == 'X') return true;
+		else if(board[0][1] == 'X' && board[1][1] == 'X'&&board[2][1] == 'X') return true;
+		else if(board[0][2] == 'X' && board[1][2] == 'X'&&board[2][2] == 'X') return true;
+		else if(board[0][2] == 'X' && board[1][1] == 'X'&&board[2][0] == 'X') return true;
+		else if(board[0][0] == 'X' && board[1][1] == 'X'&&board[2][2] == 'X') return true;	
+		else if(board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == 'O') return true;
+		else if(board[1][0] == 'O' && board[1][1] == 'O'&& board[1][2] == 'O') return true;
+		else if(board[2][0] == 'O' && board[2][1] == 'O'&&board[2][2] == 'O') return true;
+		else if(board[0][0] == 'O' && board[1][0] == 'O'&&board[2][0] == 'O') return true;
+		else if(board[0][1] == 'O' && board[1][1] == 'O'&&board[2][1] == 'O') return true;
+		else if(board[0][2] == 'O' && board[1][2] == 'O'&&board[2][2] == 'O') return true;
+		else if(board[0][2] == 'O' && board[1][1] == 'O'&&board[2][0] == 'O') return true;
+		else if(board[0][0] == 'O' && board[1][1] == 'O'&&board[2][2] == 'O') return true;
 		return false;
 	}
 
@@ -45,24 +90,24 @@ public class TicTacToe {
 	private static void input(char[][] board, int Input,char symbol) {
 		
 		switch(Input) {
-		case 1: if(board[0][0] ==' ') board[0][0] = symbol;
-		else return;
-		case 2: if(board[0][1] ==' ') board[0][1] = symbol;
-		else return;
-		case 3: if(board[0][2] ==' ') board[0][2] = symbol;
-		else return;
-		case 4: if(board[1][0] ==' ') board[1][0] = symbol;
-		else return;
-		case 5: if(board[1][1] ==' ') board[1][1] = symbol;
-		else return;
-		case 6: if(board[1][2] ==' ') board[1][2] = symbol;
-		else return;
-		case 7: if(board[2][0] ==' ') board[2][0] = symbol;
-		else return;
-		case 8: if(board[2][1] ==' ') board[2][1] = symbol;
-		else return;
-		case 9: if(board[2][2] ==' ') board[2][2] = symbol;
-		else return;
+		case 1:  board[0][0] = symbol;
+		break;
+		case 2: board[0][1] = symbol;
+		break;
+		case 3:  board[0][2] = symbol;
+		break;
+		case 4:  board[1][0] = symbol;
+		break;
+		case 5:  board[1][1] = symbol;
+		break;
+		case 6: board[1][2] = symbol;
+		break;
+		case 7:  board[2][0] = symbol;
+		break;
+		case 8:  board[2][1] = symbol;
+		break;
+		case 9: board[2][2] = symbol;
+		break;
 		default:System.out.println("Please Enter a valid input range from 1 to 9");
 		}
 	}
